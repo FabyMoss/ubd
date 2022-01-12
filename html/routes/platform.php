@@ -37,7 +37,7 @@ use App\Orchid\Screens\Examples\ExampleFieldsAdvancedScreen;
 
 // Main
 Route::screen('/main', PlatformScreen::class)
-    ->name('platform.main');
+    ->name('platform.bookstore.list');
 
 // Platform > Profile
 Route::screen('profile', UserProfileScreen::class)

@@ -2,6 +2,7 @@
 
 namespace App\Models\Books;
 
+use App\Models\Stock\Stock;
 use Orchid\Screen\AsSource;
 use App\Models\Address\City;
 use App\Models\Manager\Manager;
@@ -27,5 +28,10 @@ class Bookstore extends Model
     public function city()
     {
         return $this->belongsTo(City::class, 'city_id');
+    }
+
+    public function book()
+    {
+        return $this->hasMany(Stock::Class, 'bookstore_id')->where('bookstore', $this->id);
     }
 }

@@ -95,7 +95,7 @@ return [
     |
     */
 
-    'index' => 'platform.main',
+    'index' => 'platform.bookstore.list',
 
     /*
     |--------------------------------------------------------------------------
@@ -128,7 +128,7 @@ return [
     */
 
     'template' => [
-        'header' => null,
+        'header' => 'brand.header',
         'footer' => null,
     ],
 
