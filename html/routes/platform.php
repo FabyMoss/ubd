@@ -2,21 +2,27 @@
 
 declare(strict_types=1);
 
-use App\Orchid\Screens\Examples\ExampleCardsScreen;
-use App\Orchid\Screens\Examples\ExampleChartsScreen;
-use App\Orchid\Screens\Examples\ExampleFieldsAdvancedScreen;
-use App\Orchid\Screens\Examples\ExampleFieldsScreen;
-use App\Orchid\Screens\Examples\ExampleLayoutsScreen;
-use App\Orchid\Screens\Examples\ExampleScreen;
-use App\Orchid\Screens\Examples\ExampleTextEditorsScreen;
+use Tabuna\Breadcrumbs\Trail;
+use Illuminate\Support\Facades\Route;
 use App\Orchid\Screens\PlatformScreen;
+use App\Orchid\Screens\Book\BookEditScreen;
+use App\Orchid\Screens\Book\BookListScreen;
 use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
 use App\Orchid\Screens\User\UserEditScreen;
 use App\Orchid\Screens\User\UserListScreen;
+use App\Orchid\Screens\Examples\ExampleScreen;
 use App\Orchid\Screens\User\UserProfileScreen;
-use Illuminate\Support\Facades\Route;
-use Tabuna\Breadcrumbs\Trail;
+use App\Orchid\Screens\Manager\ManagerEditScreen;
+use App\Orchid\Screens\Manager\ManagerListScreen;
+use App\Orchid\Screens\Examples\ExampleCardsScreen;
+use App\Orchid\Screens\Examples\ExampleChartsScreen;
+use App\Orchid\Screens\Examples\ExampleFieldsScreen;
+use App\Orchid\Screens\Bookstore\BookstoreEditScreen;
+use App\Orchid\Screens\Bookstore\BookstoreListScreen;
+use App\Orchid\Screens\Examples\ExampleLayoutsScreen;
+use App\Orchid\Screens\Examples\ExampleTextEditorsScreen;
+use App\Orchid\Screens\Examples\ExampleFieldsAdvancedScreen;
 
 /*
 |--------------------------------------------------------------------------
@@ -113,3 +119,22 @@ Route::screen('example-cards', ExampleCardsScreen::class)->name('platform.exampl
 Route::screen('example-advanced', ExampleFieldsAdvancedScreen::class)->name('platform.example.advanced');
 
 //Route::screen('idea', 'Idea::class','platform.screens.idea');
+
+Route::screen('bookstore/{bookstore?}', BookstoreEditScreen::class)
+    ->name('platform.bookstore.edit');
+
+Route::screen('bookstores', BookstoreListScreen::class)
+    ->name('platform.bookstore.list');
+
+Route::screen('book/{book?}', BookEditScreen::class)
+    ->name('platform.book.edit');
+
+Route::screen('books', BookListScreen::class)
+    ->name('platform.book.list');
+
+    Route::screen('manager/{manager?}', ManagerEditScreen::class)
+    ->name('platform.manager.edit');
+
+Route::screen('managers', ManagerListScreen::class)
+    ->name('platform.manager.list');
+

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBookstoresTable extends Migration
+class CreateManagersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateBookstoresTable extends Migration
      */
     public function up()
     {
-        Schema::create('bookstores', function (Blueprint $table) {
+        Schema::create('managers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('city_id')->nullable();
-            $table->string('address');
-            $table->integer('manager_id')->nullable();
-            $table->boolean('is_closed')->nullable();
+            $table->integer('varsta');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,6 +29,6 @@ class CreateBookstoresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bookstores');
+        Schema::dropIfExists('managers');
     }
 }
