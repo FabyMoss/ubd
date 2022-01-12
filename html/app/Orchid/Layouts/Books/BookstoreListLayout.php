@@ -32,10 +32,21 @@ class BookstoreListLayout extends Table
                     return Link::make($bookstore->name)
                         ->route('platform.bookstore.edit', $bookstore);
                 }),
-
+            TD::make('manager')->render(function(Bookstore $bookstore){
+                return $bookstore->manager->name ?? '';
+            }),
+            TD::make('city')->render(function(Bookstore $bookstore){
+                return $bookstore->city->name ?? '';
+            }),
             TD::make('address', 'Address'),
-            TD::make('created_at', 'Created'),
-            TD::make('updated_at', 'Last edit'),
+            TD::make('updated')->render(function(Bookstore $bookstore){
+                return $bookstore->updated_at->diffForHumans() ?? '';
+            }),
+            TD::make('created')->render(function(Bookstore $bookstore){
+                return $bookstore->created_at->toDateTimeString() ?? '';
+            }),
+            // TD::make('created_at', 'Created'),
+            // TD::make('updated_at', 'Last edit'),
         ];
     }
 }

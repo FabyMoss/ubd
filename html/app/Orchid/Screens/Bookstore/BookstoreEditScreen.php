@@ -3,6 +3,7 @@
 namespace App\Orchid\Screens\Bookstore;
 
 use Orchid\Screen\Screen;
+use App\Models\Address\City;
 use Illuminate\Http\Request;
 use App\Models\Books\Bookstore;
 use App\Models\Manager\Manager;
@@ -86,9 +87,14 @@ class BookstoreEditScreen extends Screen
                     ->maxlength(200)
                     ->placeholder('Full Address for this Bookstore'),
 
+                Relation::make('bookstore.city_id')
+                    ->title('City')
+                    ->fromModel(City::class, 'name'),
+
                 Relation::make('bookstore.manager_id')
                     ->title('Manager')
-                    ->fromModel(Manager::class, 'name')
+                    ->fromModel(Manager::class, 'name'),
+
             ])
         ];
     }
@@ -102,7 +108,12 @@ class BookstoreEditScreen extends Screen
      */
     public function createOrUpdate(Bookstore $bookstore, Request $request)
     {
-        $bookstore->fill($request->get('bookstore'))->save();
+        $bookstore->city_id = $request->get('bookstore')['city_id'];
+        $bookstore->manager_id = $request->get('bookstore')['manager_id'];
+        $bookstore->address = $request->get('bookstore')['address'];
+        $bookstore->name = $request->get('bookstore')['name'];
+
+        $bookstore->save();
 
         Alert::info('You have successfully created a bookstore.');
 

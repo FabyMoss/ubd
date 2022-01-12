@@ -35,8 +35,12 @@ class BookListLayout extends Table
 
             TD::make('author', 'Author'),
             TD::make('year', 'Release year'),
-            TD::make('created_at', 'Created'),
-            TD::make('updated_at', 'Last edit'),
+            TD::make('updated')->render(function(Book $book){
+                return $book->updated_at->diffForHumans() ?? '';
+            }),
+            TD::make('created')->render(function(Book $book){
+                return $book->created_at->toDateTimeString() ?? '';
+            }),
         ];
     }
 }

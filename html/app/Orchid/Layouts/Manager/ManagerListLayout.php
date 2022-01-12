@@ -34,8 +34,12 @@ class ManagerListLayout extends Table
                 }),
 
             TD::make('age', 'Age'),
-            TD::make('created_at', 'Created'),
-            TD::make('updated_at', 'Last edit'),
+            TD::make('updated')->render(function(Manager $manager){
+                return $manager->updated_at->diffForHumans() ?? '';
+            }),
+            TD::make('created')->render(function(Manager $manager){
+                return $manager->created_at->toDateTimeString() ?? '';
+            }),
         ];
     }
 }
